@@ -10,3 +10,15 @@ line-height: 1.6;
 h1 {
 color: #4f8cff;
 }
+
+#boton {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#boton:hover {
+    background-color: darkblue;
+}

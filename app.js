@@ -12,3 +12,11 @@ boton.addEventListener("click", function() {
     aviso.textContent = "Has pulsado el botón " + contador + " veces";
 
 });
+
+let modonoche = document.getElementById("modonoche");
+
+modonoche.addEventListener("click", function() {
+
+    document.body.classList.toggle("tema-noche");
+
+});

@@ -47,3 +47,13 @@ color: #4f8cff;
 #menu a:hover {
     color: yellow;
 }
+
+body.tema-claro {
+    background-color: white;
+    color: black;
+}
+
+body.tema-noche {
+    background-color: #222;
+    color: white;
+}

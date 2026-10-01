@@ -38,29 +38,64 @@ const videojuegos = [
 
 const cuerpoTabla = document.querySelector("#tablaJuegos tbody");
 
-videojuegos.forEach(videojuego => {
-    const fila = document.createElement("tr");
+function pintarTabla() {
+    cuerpoTabla.innerHTML = "";
 
-    const nombre = document.createElement("td");
-    nombre.textContent = videojuego.nombre;
+    videojuegos.forEach(videojuego => {
+        const fila = document.createElement("tr");
 
-    const compania = document.createElement("td");
-    compania.textContent = videojuego.compania;
+        const nombre = document.createElement("td");
+        nombre.textContent = videojuego.nombre;
 
-    const plataforma = document.createElement("td");
-    plataforma.textContent = videojuego.plataforma;
+        const compania = document.createElement("td");
+        compania.textContent = videojuego.compania;
 
-    const valoracion = document.createElement("td");
-    valoracion.textContent = videojuego.valoracion;
+        const plataforma = document.createElement("td");
+        plataforma.textContent = videojuego.plataforma;
 
-    const precio = document.createElement("td");
-    precio.textContent = videojuego.precio + " €";
+        const valoracion = document.createElement("td");
+        valoracion.textContent = videojuego.valoracion;
 
-    fila.appendChild(nombre);
-    fila.appendChild(compania);
-    fila.appendChild(plataforma);
-    fila.appendChild(valoracion);
-    fila.appendChild(precio);
+        const precio = document.createElement("td");
+        precio.textContent = videojuego.precio + " €";
 
-    cuerpoTabla.appendChild(fila);
+        fila.appendChild(nombre);
+        fila.appendChild(compania);
+        fila.appendChild(plataforma);
+        fila.appendChild(valoracion);
+        fila.appendChild(precio);
+
+        cuerpoTabla.appendChild(fila);
+    });
+}
+
+pintarTabla();
+
+const botonAnadir = document.getElementById("anadirJuego");
+
+botonAnadir.addEventListener("click", function() {
+
+    const nombre = document.getElementById("nombre").value;
+const compania = document.getElementById("compania").value;
+const plataforma = document.getElementById("plataforma").value;
+const valoracion = Number(document.getElementById("valoracion").value);
+const precio = Number(document.getElementById("precio").value);
+
+if (nombre === "" || compania === "" || plataforma === "" || valoracion === 0 || precio === 0) {
+    alert("Rellena todos los campos.");
+    return;
+}
+
+const nuevoVideojuego = {
+    nombre: nombre,
+    compania: compania,
+    plataforma: plataforma,
+    valoracion: valoracion,
+    precio: precio
+};
+
+videojuegos.push(nuevoVideojuego);
+pintarTabla();
+document.getElementById("formularioJuego").reset();
+
 });

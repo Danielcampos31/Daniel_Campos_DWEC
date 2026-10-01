@@ -83,3 +83,46 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background-color: #ddd;
 }
+
+#formularioJuego {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background-color: #1a2030;
+}
+
+#formularioJuego h2 {
+    color: #4f8cff;
+    margin-top: 0;
+}
+
+#formularioJuego label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 5px;
+}
+
+#formularioJuego input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #0f1420;
+    color: white;
+}
+
+#anadirJuego {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4f8cff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#anadirJuego:hover {
+    background-color: #326dcc;
+}

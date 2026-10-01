@@ -57,3 +57,29 @@ body.tema-noche {
     background-color: #222;
     color: white;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #333;
+    padding: 10px;
+    text-align: left;
+    color: #e8ecf4;
+}
+
+th {
+    background-color: #333;
+    color: white;
+    font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #2a2f3a;
+}
+
+tbody tr:hover {
+    background-color: #ddd;
+}

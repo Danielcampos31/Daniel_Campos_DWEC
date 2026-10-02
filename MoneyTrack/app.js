@@ -57,3 +57,39 @@ const movimientos = [
         fecha: "2026-09-26"
     }
 ];
+
+// Calcula el total de los ingresos
+function totalIngresos() {
+    let total = 0;
+
+    for (let movimiento of movimientos) {
+        if (movimiento.importe > 0) {
+            total += movimiento.importe;
+        }
+    }
+
+    return total;
+}
+
+// Calcula el total de los gastos
+function totalGastos() {
+    let total = 0;
+
+    for (let movimiento of movimientos) {
+        if (movimiento.importe < 0) {
+            total += movimiento.importe;
+        }
+    }
+
+    return total;
+}
+
+// Calcula el saldo actual
+function saldoActual() {
+    return saldoInicial + totalIngresos() + totalGastos();
+}
+
+// Mostrar los resultados por consola
+console.log("Total ingresos:", formatearDinero(totalIngresos()));
+console.log("Total gastos:", formatearDinero(totalGastos()));
+console.log("Saldo actual:", formatearDinero(saldoActual()));

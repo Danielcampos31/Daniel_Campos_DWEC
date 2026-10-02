@@ -93,3 +93,51 @@ function saldoActual() {
 console.log("Total ingresos:", formatearDinero(totalIngresos()));
 console.log("Total gastos:", formatearDinero(totalGastos()));
 console.log("Saldo actual:", formatearDinero(saldoActual()));
+
+// Pinta los movimientos en la tabla
+function pintarTabla(listaMovimientos) {
+    const tabla = document.getElementById("tablaMovimientos");
+
+    tabla.innerHTML = "";
+
+    for (let movimiento of listaMovimientos) {
+        const fila = document.createElement("tr");
+
+        const claseImporte = movimiento.importe > 0 ? "ingreso" : "gasto";
+
+        fila.innerHTML = `
+            <td>${movimiento.concepto}</td>
+            <td class="${claseImporte}">
+                ${formatearDinero(movimiento.importe)}
+            </td>
+            <td>${movimiento.categoria}</td>
+            <td>${movimiento.fecha}</td>
+        `;
+
+        tabla.appendChild(fila);
+    }
+}
+
+// Filtra los movimientos según la categoría seleccionada
+function filtrarMovimientos() {
+    const categoriaSeleccionada =
+        document.getElementById("filtroCategoria").value;
+
+    if (categoriaSeleccionada === "Todas") {
+        pintarTabla(movimientos);
+    } else {
+        const movimientosFiltrados = movimientos.filter(
+            movimiento => movimiento.categoria === categoriaSeleccionada
+        );
+
+        pintarTabla(movimientosFiltrados);
+    }
+}
+
+// Detecta cuando cambia el filtro
+document
+    .getElementById("filtroCategoria")
+    .addEventListener("change", filtrarMovimientos);
+
+// Mostrar todos los movimientos al cargar la página
+pintarTabla(movimientos);

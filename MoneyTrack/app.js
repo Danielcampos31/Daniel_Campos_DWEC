@@ -141,3 +141,67 @@ document
 
 // Mostrar todos los movimientos al cargar la página
 pintarTabla(movimientos);
+
+// Calcula el total gastado usando reduce
+function totalGastado() {
+    return movimientos
+        .filter(movimiento => movimiento.importe < 0)
+        .reduce((total, movimiento) => total + Math.abs(movimiento.importe), 0);
+}
+
+// Calcula el gasto total agrupado por categoría
+function gastosPorCategoria() {
+    return movimientos
+        .filter(movimiento => movimiento.importe < 0)
+        .reduce((gastos, movimiento) => {
+            const categoria = movimiento.categoria;
+            const importe = Math.abs(movimiento.importe);
+
+            if (!gastos[categoria]) {
+                gastos[categoria] = 0;
+            }
+
+            gastos[categoria] += importe;
+
+            return gastos;
+        }, {});
+}
+
+// Busca la categoría en la que más se ha gastado
+function categoriaMayorGasto() {
+    const gastos = gastosPorCategoria();
+    let categoriaMayor = "";
+    let mayorImporte = 0;
+
+    for (let categoria in gastos) {
+        if (gastos[categoria] > mayorImporte) {
+            mayorImporte = gastos[categoria];
+            categoriaMayor = categoria;
+        }
+    }
+
+    return {
+        categoria: categoriaMayor,
+        importe: mayorImporte
+    };
+}
+
+// Mostrar las estadísticas por consola
+console.log("Total gastado:", formatearDinero(totalGastado()));
+console.log("Gastos por categoría:", gastosPorCategoria());
+console.log("Categoría con mayor gasto:", categoriaMayorGasto());
+
+// Pinta las estadísticas en la página
+function pintarEstadisticas() {
+    const total = totalGastado();
+    const mayorGasto = categoriaMayorGasto();
+
+    document.getElementById("totalGastado").textContent =
+        formatearDinero(total);
+
+    document.getElementById("mayorGasto").textContent =
+        mayorGasto.categoria + " (" + formatearDinero(mayorGasto.importe) + ")";
+}
+
+// Mostrar las estadísticas al cargar la página
+pintarEstadisticas();
